@@ -1,3 +1,4 @@
+from datetime import datetime
 
 class Patient():
     
@@ -12,5 +13,12 @@ class Patient():
 
     
     def convert_to_list(self):
-        pass
+        date_of_birth = datetime.strftime(self.dob, '%Y/%m/%d') # YYYY/MM/DD
+        height = str(self.height)
+        weight = str(self.weight)
+        is_medicated = str(self.is_medicated)
+
+        return [self.first_name, self.last_name, date_of_birth, height, weight, is_medicated]
+    
+    
         
