@@ -5,18 +5,22 @@ table_headings = ["first name","last name","dob","height","weight","medicated?"]
 
 table_data = dataFunctions.convert_to_rows()
 
-#1
-layout = [
+def press_add_button():
+    print('Button pressed')
+
+# patients window stuff
+patients_window_layout = [
+    [sg.Text('All patients data'), sg.Button('Add new patient')],
     [sg.Table(headings=table_headings, values=table_data)]
 ]
-#2
-window = sg.Window('Patients\' list', layout)
+patients_window = sg.Window('Patients\' list', patients_window_layout)
 
-#3
+# display patient window
 while True:
-    event, values = window.read()
+    event, values = patients_window.read()
     if event == sg.WIN_CLOSED:
         break
-#4
-window.close()
+    elif event == 'Add new patient':
+        press_add_button()
+patients_window.close()
 

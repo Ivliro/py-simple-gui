@@ -20,5 +20,3 @@ class Patient():
 
         return [self.first_name, self.last_name, date_of_birth, height, weight, is_medicated]
     
-    
-        
