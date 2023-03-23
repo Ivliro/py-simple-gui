@@ -1,12 +1,13 @@
 import PySimpleGUI as sg
 import dataFunctions
+import patientIntakeForm
 
 table_headings = ["first name","last name","dob","height","weight","medicated?"]
 
 table_data = dataFunctions.convert_to_rows()
 
 def press_add_button():
-    print('Button pressed')
+    patientIntakeForm.display_intake_form()
 
 # patients window stuff
 patients_window_layout = [
