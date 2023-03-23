@@ -10,7 +10,7 @@ def read_inputs(values):
     is_taking_medication = values["IS_TAKING_MEDICATION"]
     
     created_patient = dataFunctions.create_patient(first_name,last_name,date_of_birth,height,weight,is_taking_medication)
-    #if created_patient
+    return created_patient
 
 def create_layout():
     return [
@@ -28,12 +28,18 @@ def display_intake_form():
     patient_intake_layout = create_layout()
     patient_intake_window = sg.Window('New patient form', patient_intake_layout)
     
+    could_create = False
     # display intake form window
     while True:
         event, values = patient_intake_window.read()
         if event == sg.WIN_CLOSED or event == 'Cancel':
             break
         elif event == 'Save':
-            read_inputs(values)
-            break
+            could_create = read_inputs(values)
+            if could_create:
+                print("Patient saved")
+                break
+            else:
+                print("Could not save patient, invalid input(s)")
     patient_intake_window.close()
+    return could_create
