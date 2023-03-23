@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import dataFunctions
 
 def read_inputs(values):
     first_name = values["FIRST_NAME"]
@@ -7,18 +8,16 @@ def read_inputs(values):
     height = values["HEIGHT"]
     weight = values["WEIGHT"]
     is_taking_medication = values["IS_TAKING_MEDICATION"]
-    print(first_name)
-    print(last_name)
-    print(date_of_birth)
-    print(height)
-    print(weight)
-    print(is_taking_medication)
+    
+    created_patient = dataFunctions.create_patient(first_name,last_name,date_of_birth,height,weight,is_taking_medication)
+    #if created_patient
 
 def create_layout():
     return [
         [sg.Text('First name'),sg.Input(key="FIRST_NAME")],
         [sg.Text('Last name'),sg.Input(key="LAST_NAME")],
-        [sg.Text('Date of birth'),sg.Input(key="DATE_OF_BIRTH"),sg.CalendarButton('Select date')],
+        [sg.Text('Date of birth'),sg.Input(key="DATE_OF_BIRTH"),
+         sg.CalendarButton('Select date', format='%Y/%m/%d')],
         [sg.Text('Height'),sg.Input(key="HEIGHT")],
         [sg.Text('Weight'),sg.Input(key="WEIGHT")],
         [sg.Text('Is taking medication?'),sg.Checkbox('Yes', key="IS_TAKING_MEDICATION")],
@@ -36,4 +35,5 @@ def display_intake_form():
             break
         elif event == 'Save':
             read_inputs(values)
+            break
     patient_intake_window.close()

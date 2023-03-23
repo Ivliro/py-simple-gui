@@ -12,3 +12,24 @@ def convert_to_rows():
     for patient in patients:
         all_patients.append(patient.convert_to_list())
     return all_patients
+
+def create_patient(first_name,last_name,dob,height,weight,is_medicated):
+    if len(first_name) < 2 or len(last_name) < 2 or dob == "" or height == "" or weight == "":
+        return False
+    # ak sa hocico pokazi, ideme do 'except' s chybou
+    try:
+        date_of_birth = datetime.strptime(dob, '%Y/%m/%d')
+        # if is a future date of birth
+        if date_of_birth > datetime.now():
+            return False
+        height = int(height)
+        weight = float(weight)
+        if height <= 0 or weight <= 0:
+            return False
+        #is_medicated = True if is_medicated == True else False
+
+        patient = Patient(first_name,last_name,date_of_birth,height,weight,is_medicated)
+        patients.append(patient)
+        return True
+    except:
+        return False
